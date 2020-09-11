@@ -8,6 +8,8 @@ docker rm $(docker ps -a -q)
 docker rmi $(docker images -q)
 docker run --name tester -it --rm -p 80:80 -p 443:443 test 
 ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
+du
+df
 
 77  docker build . -t toto
   678  docker run -it -p 80:80 -p 443:443 toto
