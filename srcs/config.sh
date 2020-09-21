@@ -1,5 +1,5 @@
 mkdir /var/www/my_super_site
-mv /var/www/html/default /var/www/my_super_site
+mv /var/www/html/index.nginx-debian.html /var/www/my_super_site
 rm -rf /var/www/html /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
 cp /tmp/my_super_site /etc/nginx/sites-available/my_super_site
