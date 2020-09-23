@@ -5,8 +5,9 @@ commands:
 sudo service nginx stop
 docker build . -t test 
 docker rm $(docker ps -a -q)
-docker rmi $(docker images -q)
-docker run --name tester -it --rm -p 80:80 -p 443:443 test 
+sudo docker rmi $(sudo docker images -q)
+docker run --name tester -it --rm -p 80:80 -p 443:443 test  
+sudo docker run -e autoindex=0 --name tester -it --rm -p 80:80 -p 443:443 pwett
 ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
 du
 df
@@ -24,3 +25,10 @@ df
   687  docker run -e "index on" -it -p 80:80 -p 443:443 toto\n
 
 index auto on/off:
+
+
+docker clean up :
+sudo docker image prune
+(https://docs.docker.com/config/pruning/)
+and then 
+sudo apt-get update --fix-missing
