@@ -9,7 +9,7 @@ RUN apt-get -y install php php-fpm php-mysql
 RUN apt-get -y install mariadb-server 
 # Wordpress, Phpmyadmin
 #CMD specifies what command to run within the container.
-COPY srcs/my_super_site /tmp/
+COPY srcs/http.conf /tmp/
 COPY srcs/ssl.conf /tmp/
 COPY srcs/php-info.php /tmp/
 COPY srcs/start.sh /tmp/
