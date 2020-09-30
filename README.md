@@ -30,5 +30,9 @@ index auto on/off:
 docker clean up :
 sudo docker image prune
 (https://docs.docker.com/config/pruning/)
-and then 
-sudo apt-get update --fix-missing
+and then pray
+
+SSL 
+https://www.digicert.com/easy-csr/openssl.htm
+https://www.digicert.com/kb/ssl-support/openssl-quick-reference-guide.htm#Usingthe-subjSwitch
+https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-on-centos-7
