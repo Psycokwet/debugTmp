@@ -4,10 +4,12 @@ RUN apt-get -y update --fix-missing
 RUN apt-get -y install openssl
 RUN apt-get -y install nginx
 # php-myadmin dependancies
-RUN apt-get -y install php php-fpm php-mysql
+RUN apt-get -yq install php php-fpm php-mysql
 # fork of mysql
-RUN apt-get -y install mariadb-server 
+RUN apt-get -yq install mariadb-server 
 # Wordpress, Phpmyadmin
+RUN apt-get install wget -yq
+RUN wget -P /tmp/ https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
 #CMD specifies what command to run within the container.
 COPY srcs/http.conf /tmp/
 COPY srcs/ssl.conf /tmp/
