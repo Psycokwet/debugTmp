@@ -38,6 +38,8 @@ fi
 
 # phpmyadmin
 
-mkdir /var/www/my_super_site/phpmyadmin
-tar xvf /tmp/phpMyAdmin-latest-all-languages.tar.gz --strip-components=1 -C /var/www/my_super_site/phpmyadmin
+tar xvf /tmp/phpMyAdmin-5.0.2-all-languages.tar.gz
+mv phpMyAdmin-5.0.2-all-languages /var/www/my_super_site/phpmyadmin
 cp /var/www/my_super_site/phpmyadmin/config.sample.inc.php /var/www/my_super_site/phpmyadmin/config.inc.php
+
+rm /tmp/phpMyAdmin-5.0.2-all-languages.tar.gz
