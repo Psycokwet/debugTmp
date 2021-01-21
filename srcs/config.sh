@@ -26,7 +26,7 @@ mysql -u root -e "CREATE USER 'scarboni'@'localhost' IDENTIFIED BY 'pw';"
 
 #Auto index management
 
-if [ $autoindex == 1 ]
+if [ $autoindex == true ]
 then
     echo autoindex on
     rm /var/www/my_super_site/index.nginx-debian.html 
