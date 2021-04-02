@@ -1,6 +1,15 @@
 # AdminSys-ft_server
 ft_server project of 42 school
 
+build:
+sudo docker build . -t test 
+
+defaut :
+sudo docker run  --name tester -it --rm -p 80:80 -p 443:443 test
+
+choix autoindex :
+sudo docker run -e autoindex=false --name tester -it --rm -p 80:80 -p 443:443 test
+
 commands:
 sudo service nginx stop
 docker build . -t test 

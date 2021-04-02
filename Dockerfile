@@ -23,6 +23,6 @@ COPY srcs/php-info.php /tmp/
 COPY srcs/start.sh /tmp/
 COPY srcs/config.sh /tmp/
 # activated by default
-ENV autoindex 1
+ENV autoindex true
 CMD bash /tmp/config.sh && bash /tmp/start.sh && bash
 #order is important for cache. Run would be redownload if after copy for example
