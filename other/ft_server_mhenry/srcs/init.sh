@@ -1,6 +1,9 @@
 # Creating my_super_site directory
 mkdir -p /var/www/my_super_site/
 
+# installing non auto index
+mv /var/www/html/index.nginx-debian.html /var/www/my_super_site
+
 # Giving exec rights to user www-data
 chown -R www-data /var/www/*
 chmod -R 755 /var/www/*
@@ -16,7 +19,7 @@ rm phpMyAdmin-5.0.2-all-languages.tar.gz
 
 # Moving phpmyadmin configuration source file to proper destination
 cp /var/www/my_super_site/phpmyadmin/config.sample.inc.php /var/www/my_super_site/phpmyadmin/config.inc.php
-mv index.php /var/www/my_super_site/
+mv php-info.php /var/www/my_super_site/php-info.php
 
 # Installing wordpress
 wget -c https://wordpress.org/latest.tar.gz
