@@ -1,5 +1,5 @@
-# Creating my_site directory
-mkdir -p /var/www/my_site/
+# Creating my_super_site directory
+mkdir -p /var/www/my_super_site/
 
 # Giving exec rights to user www-data
 chown -R www-data /var/www/*
@@ -11,26 +11,26 @@ cd tmp/
 # Installing phpmyadmin
 wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-all-languages.tar.gz
 tar -xvf phpMyAdmin-4.9.0.1-all-languages.tar.gz
-mv phpMyAdmin-4.9.0.1-all-languages /var/www/my_site/phpmyadmin
+mv phpMyAdmin-4.9.0.1-all-languages /var/www/my_super_site/phpmyadmin
 rm phpMyAdmin-4.9.0.1-all-languages.tar.gz
 
 # Moving phpmyadmin configuration source file to proper destination
 cp /var/www/my_super_site/phpmyadmin/config.sample.inc.php /var/www/my_super_site/phpmyadmin/config.inc.php
-mv index.php /var/www/my_site/
+mv index.php /var/www/my_super_site/
 
 # Installing wordpress
 wget -c https://wordpress.org/latest.tar.gz
 tar -xvf latest.tar.gz
-mv wordpress/ /var/www/my_site/
+mv wordpress/ /var/www/my_super_site/
 rm latest.tar.gz
 
 # Moving wordpress configuration source file to proper destination
-mv wp-config.php /var/www/my_site/wordpress
+mv wp-config.php /var/www/my_super_site/wordpress
 
 # Moving nginx configuration into proper destination / Creating link
-# mv nginx1.conf /etc/nginx/sites-available/my_site_1
-# mv nginx2.conf /etc/nginx/sites-available/my_site_2
-# ln -s /etc/nginx/sites-available/my_site_1 /etc/nginx/sites-enabled/my_site_1
+# mv nginx1.conf /etc/nginx/sites-available/my_super_site_1
+# mv nginx2.conf /etc/nginx/sites-available/my_super_site_2
+# ln -s /etc/nginx/sites-available/my_super_site_1 /etc/nginx/sites-enabled/my_super_site_1
 # rm /etc/nginx/sites-enabled/default
 
 mv ssl.conf /etc/nginx/conf.d/ssl.conf 
