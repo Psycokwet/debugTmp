@@ -28,10 +28,15 @@ rm latest.tar.gz
 mv wp-config.php /var/www/my_site/wordpress
 
 # Moving nginx configuration into proper destination / Creating link
-mv nginx1.conf /etc/nginx/sites-available/my_site_1
-mv nginx2.conf /etc/nginx/sites-available/my_site_2
-ln -s /etc/nginx/sites-available/my_site_1 /etc/nginx/sites-enabled/my_site_1
-rm /etc/nginx/sites-enabled/default
+# mv nginx1.conf /etc/nginx/sites-available/my_site_1
+# mv nginx2.conf /etc/nginx/sites-available/my_site_2
+# ln -s /etc/nginx/sites-available/my_site_1 /etc/nginx/sites-enabled/my_site_1
+# rm /etc/nginx/sites-enabled/default
+
+mv ssl.conf /etc/nginx/conf.d/ssl.conf 
+mv http.conf /etc/nginx/conf.d/http.conf 
+rm -rf /var/www/html /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+
 
 # Back to home, because Home Sweet Home
 cd
