@@ -9,10 +9,10 @@ chmod -R 755 /var/www/*
 cd tmp/
 
 # Installing phpmyadmin
-wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-all-languages.tar.gz
-tar -xvf phpMyAdmin-4.9.0.1-all-languages.tar.gz
-mv phpMyAdmin-4.9.0.1-all-languages /var/www/my_super_site/phpmyadmin
-rm phpMyAdmin-4.9.0.1-all-languages.tar.gz
+wget https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-all-languages.tar.gz
+tar -xvf phpMyAdmin-5.0.2-all-languages.tar.gz
+mv phpMyAdmin-5.0.2-all-languages /var/www/my_super_site/phpmyadmin
+rm phpMyAdmin-5.0.2-all-languages.tar.gz
 
 # Moving phpmyadmin configuration source file to proper destination
 cp /var/www/my_super_site/phpmyadmin/config.sample.inc.php /var/www/my_super_site/phpmyadmin/config.inc.php
@@ -50,11 +50,12 @@ cd
 
 # Setting up mariadb
 service mysql start
-echo "CREATE USER 'mhenry'@'localhost' IDENTIFIED BY 'pw';" | mariadb -u root
-echo "CREATE DATABASE wordpress;" | mariadb -u root
-echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'mhenry'@'localhost' IDENTIFIED BY 'pw';" | mariadb -u root
-echo "FLUSH PRIVILEGES;" | mariadb -u root
+
+mysql -u root -e "CREATE USER 'scarboni'@'localhost' IDENTIFIED BY 'pw';"
+mysql -u root -e "CREATE DATABASE wordpress;"
+mysql -u root -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'scarboni'@'localhost' IDENTIFIED BY 'pw';"
+mysql -u root -e "FLUSH PRIVILEGES;" 
 
 service nginx start
 service php7.3-fpm start
-bash
+nginx -t
