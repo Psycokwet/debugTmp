@@ -19,6 +19,8 @@ rm phpMyAdmin-5.0.2-all-languages.tar.gz
 
 # Moving phpmyadmin configuration source file to proper destination
 cp /var/www/my_super_site/phpmyadmin/config.sample.inc.php /var/www/my_super_site/phpmyadmin/config.inc.php
+
+# mv phpmyadmin.inc.php /var/www/my_super_site/phpmyadmin/config.inc.php
 mv php-info.php /var/www/my_super_site/php-info.php
 
 # Installing wordpress
@@ -30,26 +32,21 @@ rm latest.tar.gz
 # Moving wordpress configuration source file to proper destination
 mv wp-config.php /var/www/my_super_site/wordpress
 
-# Moving nginx configuration into proper destination / Creating link
-# mv nginx1.conf /etc/nginx/sites-available/my_super_site_1
-# mv nginx2.conf /etc/nginx/sites-available/my_super_site_2
-# ln -s /etc/nginx/sites-available/my_super_site_1 /etc/nginx/sites-enabled/my_super_site_1
-# rm /etc/nginx/sites-enabled/default
+# Moving nginx configuration into proper destination
 
 mv ssl.conf /etc/nginx/conf.d/ssl.conf 
 mv http.conf /etc/nginx/conf.d/http.conf 
 rm -rf /var/www/html /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
 
-# Back to home, because Home Sweet Home
-cd
+# https generating configuration certificate
 
-# Generating SSL certificate
  openssl req -new -newkey rsa:2048 -nodes \
      -out /etc/ssl/certs/my_super_site.csr \
      -keyout /etc/ssl/private/my_super_site.key \
      -subj "/C=DE/ST=0/L=0/O=0/CN=my_super_site"
  openssl x509 -req -in /etc/ssl/certs/my_super_site.csr -signkey /etc/ssl/private/my_super_site.key -out /etc/ssl/certs/my_super_site.crt
+
 
 # Setting up mariadb
 service mysql start
