@@ -1,6 +1,8 @@
 # AdminSys-ft_server
 ft_server project of 42 school
 
+git clone https://github.com/martinovich89/ft_server_mhenry.git
+
 build:
 sudo docker build . -t test 
 
