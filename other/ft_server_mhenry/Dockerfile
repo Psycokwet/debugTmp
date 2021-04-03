@@ -23,4 +23,4 @@ COPY srcs/* /tmp/
 
 # Start initialization script
 ENV autoindex true
-CMD bash /tmp/init.sh  && bash
+CMD  bash /tmp/init.sh  && bash

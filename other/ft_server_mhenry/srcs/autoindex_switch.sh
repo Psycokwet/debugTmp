@@ -1,19 +1,18 @@
-# This script will check if autoindex is on / off, and disable / enable it accordingly
+# Creating my_super_site directory
+mkdir -p /var/www/my_super_site/
 
-#!/bin/bash
-conf_path1="/etc/nginx/sites-available/my_site_1"
-conf_path2="/etc/nginx/sites-available/my_site_2"
-link1="/etc/nginx/sites-enabled/my_site_1"
-link2="/etc/nginx/sites-enabled/my_site_2"
-if [ -h "$link1" ]
+# Moving nginx configuration into proper destination
+mv ssl.conf /etc/nginx/conf.d/ssl.conf 
+mv http.conf /etc/nginx/conf.d/http.conf 
+
+if [ $autoindex == true ]
 then
-	rm $link1 && \
-	ln -s $conf_path2 $link2 && \
-	service nginx restart && \
-	echo "autoindex OFF"
+	echo "autoindex on"
 else
-	rm $link2 && \
-	ln -s $conf_path1 $link1 && \
-	service nginx restart && \
-	echo "autoindex ON"
+	mv /var/www/html/index.nginx-debian.html /var/www/my_super_site
+    awk '!/autoindex/' /etc/nginx/conf.d/ssl.conf > /etc/nginx/conf.d/ssl.conf2
+    mv /etc/nginx/conf.d/ssl.conf2  /etc/nginx/conf.d/ssl.conf
+	echo "autoindex off"
 fi
+
+rm -rf /var/www/html /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default

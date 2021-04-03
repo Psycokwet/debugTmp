@@ -1,8 +1,6 @@
 # Creating my_super_site directory
 mkdir -p /var/www/my_super_site/
 
-# installing non auto index
-mv /var/www/html/index.nginx-debian.html /var/www/my_super_site
 
 # Giving exec rights to user www-data
 chown -R www-data /var/www/*
@@ -32,13 +30,6 @@ rm latest.tar.gz
 # Moving wordpress configuration source file to proper destination
 mv wp-config.php /var/www/my_super_site/wordpress
 
-# Moving nginx configuration into proper destination
-
-mv ssl.conf /etc/nginx/conf.d/ssl.conf 
-mv http.conf /etc/nginx/conf.d/http.conf 
-rm -rf /var/www/html /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-
-
 # https generating configuration certificate
 
  openssl req -new -newkey rsa:2048 -nodes \
@@ -55,6 +46,27 @@ mysql -u root -e "CREATE USER 'scarboni'@'localhost' IDENTIFIED BY 'pw';"
 mysql -u root -e "CREATE DATABASE wordpress;"
 mysql -u root -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'scarboni'@'localhost' IDENTIFIED BY 'pw';"
 mysql -u root -e "FLUSH PRIVILEGES;" 
+
+
+
+
+# Moving nginx configuration into proper destination
+
+mv /tmp/ssl.conf /etc/nginx/conf.d/ssl.conf 
+mv /tmp/http.conf /etc/nginx/conf.d/http.conf 
+
+
+if [ $autoindex == true ]
+then
+    echo autoindex on
+else
+    echo autoindex off
+    mv /var/www/html/index.nginx-debian.html /var/www/my_super_site # installing non auto index
+    awk '!/autoindex/' /etc/nginx/conf.d/ssl.conf > /etc/nginx/conf.d/ssl.conf2
+    mv /etc/nginx/conf.d/ssl.conf2  /etc/nginx/conf.d/ssl.conf
+fi
+
+rm -rf /var/www/html /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
 service nginx start
 service php7.3-fpm start
